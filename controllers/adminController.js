@@ -4,11 +4,16 @@ const bycrpt = require("bcryptjs")
 
 class adminController{
     static login(req,res){
-        res.render("loginAdmin.ejs")
+        let error = req.query.error
+        res.render("loginAdmin.ejs", {error})
     }
 
     static loginPost(req,res){
         let {username, password} = req.body
+        let input = []
+        if(!username) input.push('username is required')
+        if(!password) input.push(' password is required')
+        if(input.length > 0) return res.redirect(`/admin/login?error=${input}`)
         User.findOne({
             where : {username}
         })
@@ -21,12 +26,15 @@ class adminController{
                     res.redirect(`/admin/login/${user.id}`)
                 } else {
                     const error = "Invalid Username or Password"
-                    res.send(error)
+                    res.redirect(`/admin/login?error=${error}`)
                 }
+            } else {
+                const error = 'You are not admin'
+                res.redirect(`/admin/login?error=${error}`)
             }
         })
         .catch(err=>{
-            res.send("ANDA BUKAN ADMIN")
+            res.send(err)
         })
     }
 
@@ -140,15 +148,18 @@ class adminController{
             res.redirect(`/admin/login/${userId}`)
         })
         .catch(err=>{
-            const errors = {}
-            err.errors.forEach(x=>{
-                if(errors[x.path]) {
-                    errors[x.path].push(x.message)
-                } else {
+            if(err.name = 'SequelizeValidationError'){
+                let errors = {}
+                err.errors.forEach(x=>{
+                    if(!errors[x.path]) {
+                        errors[x.path] = ''
+                    } 
                     errors[x.path] = x.message
-                }
-            })
-            res.render("addClothe.ejs", {userId, errors})
+                })
+                res.render("addClothe.ejs", {userId, errors})
+            } else {
+                res.send(err)
+            }
         })
 
     }

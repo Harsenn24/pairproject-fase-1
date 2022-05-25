@@ -8,10 +8,10 @@ router.get("/login", adminController.login)
 router.post("/login", adminController.loginPost)
 
 router.use(function (req, res, next) {
-    if (req.session.UserId) {
+    if (req.session.userId) {
       next()
     } else {
-      let errors = 'Please Login First'
+      let errors = `Please login first`
       res.redirect(`/admin/login?error=${errors}`)
     }
 })

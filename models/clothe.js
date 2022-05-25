@@ -42,7 +42,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `Image URL is required`
-        }
+        },
+        isUrl: { msg : 'Must be url' }
       }
     },
     name: {
@@ -50,6 +51,17 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `Name is required`
+        },
+        maxium(value){
+          if(value.length < 5){
+            throw new Error(`minimun 5 characters`)
+          }
+          if(value.length > 20){
+            throw new Error(`maximum 20 characters`)
+          }
+          if(value.split(' ').length > 5){
+            throw new Error(`maximum word is 5`)
+          }
         }
       }
     },
@@ -66,7 +78,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `Price is required`
-        }
+        },
+        min: { args: 1000, msg: 'Minimum price Rp. 1000' }
       }
     },
     stock: {
@@ -74,7 +87,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `Stock is required`
-        }
+        },
+        min: { args: [0], msg: 'invalid stock' }
       }
     },
     status: {
