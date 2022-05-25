@@ -54,16 +54,18 @@ class Controller{
             }
         })
         .catch(err=>{
-            const errors = {}
-
-            err.errors.forEach(x=>{
-                if(errors[x.path]) {
-                    errors[x.path].push(x.message)
-                } else {
+            if(err.name = 'SequelizeValidationError'){
+                let errors = {}
+                err.errors.forEach(x=>{
+                    if(!errors[x.path]) {
+                        errors[x.path] = ''
+                    } 
                     errors[x.path] = x.message
-                }
-            })
-            res.render("register.ejs", {errors})
+                })
+                res.render("register.ejs", {errors})
+            } else {
+                res.send(err)
+            }
         })
     }
 }

@@ -26,6 +26,17 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `username is required`
+        },
+        maxium(value){
+          if(value.length < 5){
+            throw new Error(`minimun 5 characters`)
+          }
+          if(value.length > 20){
+            throw new Error(`maximum 20 characters`)
+          }
+          if(value.split(' ').length > 2){
+            throw new Error(`maximum word is 2`)
+          }
         }
       }
     },
@@ -34,6 +45,17 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `password is required`
+        },
+        isValidate(value){
+          if(value.length < 5){
+            throw new Error(`minimun 5 characters`)
+          }
+          if(value.length > 20){
+            throw new Error(`maximum 20 characters`)
+          }
+          if(value.split(' ').length > 1){
+            throw new Error(`password can not have spaces`)
+          }
         }
       }
     },
@@ -42,7 +64,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           msg: `email is required`
-        }
+        },
+        isEmail: { msg: `the input entered must be email` }
       }
     },
     role: {
