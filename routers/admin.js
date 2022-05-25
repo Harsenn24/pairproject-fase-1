@@ -8,7 +8,6 @@ router.get("/login", adminController.login)
 router.post("/login", adminController.loginPost)
 
 router.use(function (req, res, next) {
-    console.log(req.session);
     if (req.session.UserId) {
       next()
     } else {
