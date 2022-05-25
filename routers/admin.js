@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminController")
-// const session = require('express-session')
+const session = require('express-session')
 
 
 router.get("/login", adminController.login)

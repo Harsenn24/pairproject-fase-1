@@ -6,8 +6,7 @@ router.get("/login", clientController.login)
 router.post("/login", clientController.loginPost)
 
 router.use(function (req, res, next) {
-    console.log(req.session);
-    if (req.session.UserId) {
+    if (req.session.userId) {
       next()
     } else {
       let errors = 'Please Login First'
