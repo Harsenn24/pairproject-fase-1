@@ -7,6 +7,9 @@
     <title>Login Client</title>
 </head>
 <body>
+    <div>
+        <a href="/">Home</a>
+    </div>
     <form action="/client/login" method="post">
     USERNAME <BR>
     <input type="text" name="username" value="" placeholder=""><BR></BR>
@@ -14,6 +17,11 @@
     <input type="text" name="password" value="" placeholder=""><BR></BR>
     <input type="submit" value="login">
     </form>
-    
+    <% if (error) { %>
+        <p style="color: red;"><%= error.split(',').map(el => el) %></p>
+        <% if (error == `You don't have an account, please sign up`) { %>
+            <button onclick="location.href='/register'">sign-up</button>
+        <% } %>
+    <% } %>
 </body>
 </html>

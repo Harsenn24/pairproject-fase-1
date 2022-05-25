@@ -4,11 +4,16 @@ const {changeFormat} = require("../helps/help")
 
 class clientController {
     static login(req,res) {
-        res.render("loginClient.ejs")
+        let error = req.query.error
+        res.render("loginClient.ejs", {error})
     }
 
     static loginPost(req,res){
         let {username, password} = req.body
+        let error = []
+        if(!username) error.push('username is required')
+        if(!password) error.push(' password is required')
+        if(error.length > 0) return res.redirect(`/client/login?error=${error}`)
         User.findOne({
             where : {username}
         })
@@ -16,12 +21,15 @@ class clientController {
             if (user && user.role === "client") {
                 let truePassword = bycrpt.compareSync(password, user.password)
                 if(truePassword) {
-                    req.session.UserId = user.id
+                    req.session.userId = user.id
                     return res.redirect(`/client/login/${user.id}`)
                 } else {
                     const error = "Invalid Username or Password"
-                    return res.send(error)
+                    res.redirect(`/client/login?error=${error}`)
                 }
+            } else {
+                const error = `You don't have an account, please sign up`
+                res.redirect(`/client/login?error=${error}`)
             }
         })
         .catch(err=>{
