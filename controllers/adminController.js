@@ -17,6 +17,7 @@ class adminController{
             if (user && user.role === "admin") {
                 let truePassword = bycrpt.compareSync(password, user.password)
                 if(truePassword) {
+                    req.session.userId = user.id
                     res.redirect(`/admin/login/${user.id}`)
                 } else {
                     const error = "Invalid Username or Password"

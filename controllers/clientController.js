@@ -16,6 +16,7 @@ class clientController {
             if (user && user.role === "client") {
                 let truePassword = bycrpt.compareSync(password, user.password)
                 if(truePassword) {
+                    req.session.userId = user.id
                     return res.redirect(`/client/login/${user.id}`)
                 } else {
                     const error = "Invalid Username or Password"

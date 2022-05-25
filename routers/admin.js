@@ -1,15 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminController")
-// const session = require('express-session')
+const session = require('express-session')
 
 
 router.get("/login", adminController.login)
 router.post("/login", adminController.loginPost)
 
 router.use(function (req, res, next) {
-    console.log(req.session);
-    if (req.session.UserId) {
+    if (req.session.userId) {
       next()
     } else {
       let errors = 'Please Login First'
