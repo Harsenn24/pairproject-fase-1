@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Clothe</title>
+</head>
+<body>
+    <h1>Clothes OKE</h1>
+
+    <form action="/admin/login/<%=userId%>/editClothe/<%=result.id%>" method="post">
+        Image <BR>
+        <input type="text" name="imageUrl" value="<%=result.imageUrl%>" placeholder=""><BR></BR>
+
+        Name <BR>
+        <input type="text" name="name" value="<%=result.name%>" placeholder=""><BR></BR>
+
+        Type<BR>
+        <select name="type" id="">
+            <option value="<%=result.type%>" hidden><%=result.type%></option>
+            <option value="Kaos" >Kaos</option>
+            <option value="Kemeja" >Kemeja</option>
+            <option value="Jas" >Jas</option>
+            <option value="Jaket" >Jaket</option>
+        </select><br><br>
+
+        Stock <BR>
+        <input type="number" name="stock" value="<%=result.stock%>" placeholder=""><BR></BR>
+
+        Price <BR>
+        <input type="number" name="price" value="<%=result.price%>" placeholder=""><BR></BR>
+
+        Status<BR>
+        <select name="status" id="">
+            <option value="<%=result.status%>" hidden><%=result.status%></option>
+            <option value="ReadyStock" >ReadyStock</option>
+            <option value="OutOfStock" >OutOfStock</option>
+        </select>
+
+        <button type="submit">Edit Clothe</button>
+    </form>
+</body>
+</html>

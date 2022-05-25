@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Clothe</title>
+</head>
+<body>
+    <h1>Clothes OKE</h1>
+    <a href="/admin/login/<%=userId%>"><button>Back</button></a><br><br>
+    <form action="/admin/login/<%=userId%>/addClothe" method="post">
+        Image <BR>
+        <input type="text" name="imageUrl" value="" placeholder="">
+            <div style="color: red;">
+                <% if (errors) { %>
+                <%=errors.imageUrl %>
+                <% } %>
+            </div><BR></BR>
+
+        Name <BR>
+        <input type="text" name="name" value="" placeholder="">
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.name %>
+            <% } %>
+        </div><BR></BR>
+
+        Type<BR>
+        <select name="type" id="">
+            <option value="" hidden>----Choose-----</option>
+            <option value="Kaos" >Kaos</option>
+            <option value="Kemeja" >Kemeja</option>
+            <option value="Jas" >Jas</option>
+            <option value="Jaket" >Jaket</option>
+        </select>
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.type %>
+            <% } %>
+        </div><BR></BR>
+
+        Stock <BR>
+        <input type="number" name="stock" value="" placeholder="">
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.stock %>
+            <% } %>
+        </div><BR></BR>
+
+        Price <BR>
+        <input type="number" name="price" value="" placeholder="">
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.price %>
+            <% } %>
+        </div><BR></BR>
+
+        Status<BR>
+        <select name="status" id="">
+            <option value="" hidden>----Choose-----</option>
+            <option value="ReadyStock" >ReadyStock</option>
+            <option value="OutOfStock" >OutOfStock</option>
+        </select>
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.status %>
+            <% } %>
+        </div><BR></BR>
+
+        <button type="submit">Add Clothe</button>
+    </form>
+</body>
+</html>

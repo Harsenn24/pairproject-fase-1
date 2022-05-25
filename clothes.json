@@ -1,0 +1,26 @@
+[
+    {
+        "imageUrl": "https://cf.shopee.co.id/file/c3c1e8641074a1370d343f6fcf864751",
+        "name": "Kaos Deus",
+        "type": "Kaos",
+        "stock": 25,
+        "price" : 50000,
+        "status" : "Available"
+    },
+    {
+        "imageUrl": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/431479/item/goods_66_431479.jpg?width=1600&impolicy=quality_75",
+        "name": "Kemeja Kotak-kotak",
+        "type": "Kemeja",
+        "stock": 20,
+        "price" : 75000,
+        "status" : "Available"
+    },
+    {
+        "imageUrl": "https://lzd-img-global.slatic.net/live/id/p/133db1243e166084d49f27c4e9ac98f5.jpg_720x720q80.jpg_.webp",
+        "name": "Jas Kondangan slim Fit",
+        "type": "Jas",
+        "stock": 10,
+        "price" : 100000,
+        "status" : "Available"
+    }
+]

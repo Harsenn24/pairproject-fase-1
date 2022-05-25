@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profil</title>
+</head>
+<body>
+    <h1>Clothes OKE</h1>
+
+    <form action="/client/login/<%=result[0].UserId%>/editProfil" method="post">
+        Full Name <BR>
+        <input type="text" name="fullName" value="<%=result[0].fullName%>" placeholder=""><BR></BR>
+        Gender<BR>
+        <select name="gender" id="">
+            <option value="<%=result[0].gender%>" hidden><%=result[0].gender%></option>
+            <option value="Male" >Male</option>
+            <option value="Female" >Female</option>
+        </select>
+        <button type="submit">Edit Profil</button>
+    </form><br><br>
+
+    <a href="/client/login/<%=result[0].UserId%>"><button>Back</button></a>
+    <br><br>
+</body>
+</html>

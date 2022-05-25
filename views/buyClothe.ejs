@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Clothes</title>
+</head>
+<body>
+    <h1>Clothes OKE</h1>
+
+    <a href="/client/login/<%=userId%>"><button>Home</button></a>
+    <br><br>
+
+    <% if(ClotheName) { %>
+        <h2 style="color: red;">
+            Success buy <%=ClotheName%>
+        </h2>
+    <% } %>
+
+    <% if(failedBuy) { %>
+        <h2 style="color: red;">
+            You can't buy <%=failedBuy%>, its Out of stock!
+        </h2>
+    <% } %>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Picture</th>
+            <th>Price</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Total Stock</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <% result.forEach(x=>{ %>
+            <tr>
+                <th><%=x.id%></th>
+                <th><img src="<%=x.imageUrl%>"style="width: 200px; height:200px"</th>
+                <th><%=x.changeFormat(x.price)%></th>
+                <th><%=x.name%></th>
+                <th><%=x.type%></th>
+                <th><%=x.stock%></th>
+                <th><%=x.statusSell(x.status)%></th>
+                <th>
+                    <a href="/client/login/<%=userId%>/addWishList/<%=x.id%>"><button>add To WishList</button></a>
+                </th>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

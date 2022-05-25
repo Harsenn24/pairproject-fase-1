@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Clothes OKE</h1>
+
+    <a href="/"><button>Home</button></a><br><br>
+
+    <form action="/register" method="post">
+        USERNAME <BR>
+        <input type="text" name="username" value="" placeholder="">
+            <div style="color: red;">
+                <% if (errors) { %>
+                <%=errors.username %>
+                <% } %>
+            </div><BR><BR>
+        PASSWORD<BR>
+        <input type="text" name="password" value="" placeholder="">
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.password %>
+            <% } %>
+        </div><BR><BR>
+        EMAIL<BR>
+        <input type="text" name="email" value="" placeholder="">
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.email %>
+            <% } %>
+        </div><BR><BR>
+        ROLE <br>
+        <select name="role" id="">
+            <option value="">----Choose-----</option>
+            <option value="admin">Admin</option>
+            <option value="client">Client</option>     
+        </select>
+        <div style="color: red;">
+            <% if (errors) { %>
+            <%=errors.role %>
+            <% } %>
+        </div><BR><BR>
+        <input type="submit" value="sign up">
+        </form>
+</body>
+</html>

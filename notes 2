@@ -1,0 +1,168 @@
+
+
+Install SEQUELIZE :
+
+
+    npm init -y
+
+    npm i express
+     
+    npm i ejs
+     
+    npm i sequelize pg
+    
+    touch .gitignore
+
+    masukan node_modules
+    
+    npm install --save-dev sequelize-cli
+
+    BUAT FOLDER/ FILE :
+    mkdir controllers views routers helps
+
+    touch controllers/controller.js helps/help app.js
+
+    JALANIN DI TERMINAL
+    npx sequelize init (---- generate folder dan file ------)
+
+    di development, 
+    ubah username, password dan dialect ke postgres
+
+    jalanin command 
+    npx sequelize db:create
+
+    cek di dbeaver udah masuk belum databasenya!
+
+    =================================================
+    membuat TABLE / MIGRATION
+
+    FOLDER migration, model dan seeder sudh otomatis kebuat, masuk ke setup
+
+    Membuat MIGRATION :
+        npx sequelize-cli model:generate --name User --attributes username:string,password:string,email:string,role:string
+        npx sequelize-cli model:generate --name Profile --attributes fullName:string,gender:string,UserId:integer
+        npx sequelize-cli model:generate --name Clothe --attributes imageUrl:string,name:string,type:string,stock:integer
+        npx sequelize-cli model:generate --name Transaction --attributes UserId:integer,ClotheId:integer
+
+
+  
+    isi allowNull : false di setiap key
+
+    HAPUS async dan GANTI await ke return difolder migration
+
+    JALANKAN!!
+    npx sequelize db:migrate
+
+    ==================================================================
+
+    Membuat COLOM BARU DAN RELASI
+
+    JALANKAN
+
+    npx sequelize migration:generate --name (namaKolomBaru)
+    npx sequelize migration:generate --name add-status
+
+    masuk ke file baru di folder migration
+
+    HAPUS async 
+    
+    kasih syntax pembuatan addColumn
+    https://sequelize.org/api/v6/class/src/dialects/abstract/query-interface.js~queryinterface#instance-method-addColumn
+
+    tambahkan return di depan queryinterface di bagian UP!
+
+    param1 = nama table
+    param2 = nama kolom
+    param3 = https://sequelize.org/api/v6/class/src/dialects/abstract/query-interface.js~queryinterface#instance-method-createDatabase
+           = attributes nomor 4
+
+    untuk REFERENCES MODEL di tulis nama MAIN TABLE NYA
+
+    jalanin!!
+    npx sequelize db:migrate:undo:all
+    npx sequelize db:migrate
+
+    cek relasi di ERD dbeaver!
+
+    tambahkan column secara manual di modelnya
+    namaId dan dataType
+
+    
+    bikin relasi hasMany dan belongTo di model masing2
+
+    ======================================================================
+    seeding
+
+    jalankan!
+    npx sequelize seed:generate --name namaSeeder
+    npx sequelize seed:generate --name clothes
+
+    hapus async
+
+    uncommand queryinterface.bulkInsert
+
+    param1 = nama tables
+    param2 = nama data yang diambil dari JSON
+    param3 = object kosong
+
+    const fs require
+    panngil data JSON
+    masukin ke let data
+
+    looping si data yang sudah dipanggil dari JSON, kalau ada id di JSON, hapus
+    lalu masukin createdAt dan updatedAt new Date
+
+    jalankan
+    npx sequelize db:seed:all
+
+    bikin relasi hasMany dan belongTo di model masing2
+
+    seed selesai
+
+    ====================================================================
+
+    masuk ke express.js
+
+    buat app.js
+
+    buat routing ini itu
+    https://expressjs.com/en/starter/hello-world.html
+
+    app set engine
+    https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application-id
+
+    app use yang true:
+    https://nkhilv.medium.com/what-does-express-urlencoded-do-anyway-8bdc4e638e1e
+
+    BUAT MVC
+
+    ==================================
+    ADDITIONAL
+
+    https://sequelize.org/docs/v6/other-topics/hooks/
+    hooks before
+
+    https://www.codegrepper.com/code-examples/javascript/javascript+number+format+indonesia
+    change currency
+
+    https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
+    operator
+    
+    
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
