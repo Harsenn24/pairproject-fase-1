@@ -61,15 +61,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
+      allowNull: false,
       validate: {
-        notEmpty : {
+        notEmpty: {
           msg: `email is required`
         },
-        isEmail: { msg: `the input entered must be email` },
-        isUnique: function () { // This works as expected
-          throw new Error({msg:'Email address already in use!'});
-        }
+        isEmail: { msg: `the input entered must be email` }
       }
     },
     role: {

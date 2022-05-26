@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Clothe</title>
+    <%- include('./partials/head-admin.ejs' ,{tittle: 'Add Clothe'}) %>
 </head>
 <body>
-    <h1>Clothes OKE</h1>
-    <a href="/admin/login/<%=userId%>"><button>Back</button></a><br><br>
+    <div style="margin: 3%; position: relative;">
+        <a href="/admin/login/<%=userId%>" style="color: #354259; text-decoration: none;"><i data-feather="arrow-left-circle"></i> Back to Home</a>
+    </div>
+    <div class="container" style="margin-left: 5%; width: 400px;">
+        <h1>Clothes OKE</h1>
     <form action="/admin/login/<%=userId%>/addClothe" method="post">
         Image <BR>
-        <input type="text" name="imageUrl" value="" placeholder="">
+        <input type="text" name="imageUrl" value="" placeholder="" class="form-control">
             <div style="color: red;">
                 <% if (errors) { %>
                 <%=errors.imageUrl %>
                 <% } %>
-            </div><BR></BR>
+            </div>
 
         Name <BR>
-        <input type="text" name="name" value="" placeholder="">
+        <input type="text" name="name" value="" placeholder="" class="form-control">
         <div style="color: red;">
             <% if (errors) { %>
             <%=errors.name %>
             <% } %>
-        </div><BR></BR>
+        </div>
 
         Type<BR>
-        <select name="type" id="">
-            <option value="" hidden>----Choose-----</option>
+        <select name="type" id="" class="form-control">
+            <option value="" hidden>Choose---</option>
             <option value="Kaos" >Kaos</option>
             <option value="Kemeja" >Kemeja</option>
             <option value="Jas" >Jas</option>
@@ -38,26 +38,26 @@
             <% if (errors) { %>
             <%=errors.type %>
             <% } %>
-        </div><BR></BR>
+        </div>
 
         Stock <BR>
-        <input type="number" name="stock" value="" placeholder="">
+        <input type="number" name="stock" value="" placeholder="" class="form-control">
         <div style="color: red;">
             <% if (errors) { %>
             <%=errors.stock %>
             <% } %>
-        </div><BR></BR>
+        </div>
 
         Price <BR>
-        <input type="number" name="price" value="" placeholder="">
+        <input type="number" name="price" value="" placeholder="" class="form-control">
         <div style="color: red;">
             <% if (errors) { %>
             <%=errors.price %>
             <% } %>
-        </div><BR></BR>
+        </div>
 
         Status<BR>
-        <select name="status" id="">
+        <select name="status" id="" class="form-control">
             <option value="" hidden>----Choose-----</option>
             <option value="ReadyStock" >ReadyStock</option>
             <option value="OutOfStock" >OutOfStock</option>
@@ -66,9 +66,13 @@
             <% if (errors) { %>
             <%=errors.status %>
             <% } %>
-        </div><BR></BR>
-
-        <button type="submit">Add Clothe</button>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Add Clothe</button>
     </form>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>
