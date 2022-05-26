@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Clothe</title>
+    <%- include('./partials/head-admin.ejs' ,{tittle: 'Edit Clothe'}) %>
 </head>
 <body>
-    <h1>Clothes OKE</h1>
+    <div style="margin: 3%; position: relative;">
+        <a href="/admin/login/<%=userId%>" style="color: #354259; text-decoration: none;"><i data-feather="arrow-left-circle"></i> Back</a>
+    </div>
+    <div class="container" style="width: 400px;">
+        <h1>Clothes Oke</h1>
 
-    <form action="/admin/login/<%=userId%>/editClothe/<%=result.id%>" method="post">
-        Image <BR>
-        <input type="text" name="imageUrl" value="<%=result.imageUrl%>" placeholder=""><BR></BR>
+        <form action="/admin/login/<%=userId%>/editClothe/<%=result.id%>" method="post">
+            Image <BR>
+            <input type="text" name="imageUrl" value="<%=result.imageUrl%>" placeholder="" class="form-control">
 
-        Name <BR>
-        <input type="text" name="name" value="<%=result.name%>" placeholder=""><BR></BR>
+            Name <BR>
+            <input type="text" name="name" value="<%=result.name%>" placeholder="" class="form-control">
 
-        Type<BR>
-        <select name="type" id="">
-            <option value="<%=result.type%>" hidden><%=result.type%></option>
-            <option value="Kaos" >Kaos</option>
-            <option value="Kemeja" >Kemeja</option>
-            <option value="Jas" >Jas</option>
-            <option value="Jaket" >Jaket</option>
-        </select><br><br>
+            Type<BR>
+            <select name="type" id="" class="form-control">
+                <option value="<%=result.type%>" hidden><%=result.type%></option>
+                <option value="Kaos" >Kaos</option>
+                <option value="Kemeja" >Kemeja</option>
+                <option value="Jas" >Jas</option>
+                <option value="Jaket" >Jaket</option>
+            </select><br>
 
-        Stock <BR>
-        <input type="number" name="stock" value="<%=result.stock%>" placeholder=""><BR></BR>
+            Stock <BR>
+            <input type="number" name="stock" value="<%=result.stock%>" placeholder="" class="form-control">
 
-        Price <BR>
-        <input type="number" name="price" value="<%=result.price%>" placeholder=""><BR></BR>
+            Price <BR>
+            <input type="number" name="price" value="<%=result.price%>" placeholder="" class="form-control">
 
-        Status<BR>
-        <select name="status" id="">
-            <option value="<%=result.status%>" hidden><%=result.status%></option>
-            <option value="ReadyStock" >ReadyStock</option>
-            <option value="OutOfStock" >OutOfStock</option>
-        </select>
-
-        <button type="submit">Edit Clothe</button>
-    </form>
+            Status<BR>
+            <select name="status" id="" class="form-control">
+                <option value="<%=result.status%>" hidden><%=result.status%></option>
+                <option value="ReadyStock" >ReadyStock</option>
+                <option value="OutOfStock" >OutOfStock</option>
+            </select><br><br>
+            <button type="submit" class="btn btn-success">Edit Clothe</button>
+        </form>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>

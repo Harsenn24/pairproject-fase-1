@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Client</title>
+    <%- include('./partials/head.ejs' ,{tittle: 'Login Client'}) %> 
 </head>
 <body>
-    <div>
-        <a href="/">Home</a>
+    <div style="margin-left: 5%; margin-top: -6%; position: absolute;">
+        <a href="/" style="color: #354259; text-decoration: none;"><i data-feather="arrow-left-circle"></i> Back</a>
     </div>
-    <form action="/client/login" method="post">
-    USERNAME <BR>
-    <input type="text" name="username" value="" placeholder=""><BR></BR>
-    PASSWORD<BR>
-    <input type="text" name="password" value="" placeholder=""><BR></BR>
-    <input type="submit" value="login">
-    </form>
-    <% if (error) { %>
-        <p style="color: red;"><%= error.split(',').map(el => el) %></p>
-        <% if (error == `You don't have an account, please sign up`) { %>
-            <button onclick="location.href='/register'">sign-up</button>
-        <% } %>
-    <% } %>
+    <div class="container" style="text-align: center; margin-top: 10%; width: 50%;">
+        <form action="/client/login" method="post">
+            Username <BR>
+            <input type="text" name="username" value="" placeholder="Username" class="form-control"><BR></BR>
+            Password<BR>
+            <input type="text" name="password" value="" placeholder="Password" class="form-control">
+            <BR>
+                <% if (error) { %>
+                    <p style="color: red;"><%= error.split(',').map(el => el) %> 
+                        <% if (error == `You don't have an account, please`) { %>
+                        <a href="/register">Sign-up</a>
+                    <% } %>
+                    </p>
+                <% } %>
+            </BR>
+            <input type="submit" value="login" class="btn btn-outline-secondary">
+        </form>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>

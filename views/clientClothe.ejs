@@ -1,86 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Clothes</title>
+    <%- include('./partials/head-admin.ejs' ,{tittle: 'Clothes Oke'}) %>
 </head>
 <body>
-    <h1>Clothes OKE</h1>
+    <div class="container" style="margin-top: 5%;">
+        <h1>Clothes OKE</h1>
 
-    <% if(result1[0].Profile === null) { %>
+        <% if(result1[0].Profile === null) { %>
 
-            Name    : -
-            <br>
-            Role    : -
-            <br>
-            Email   : -
-            <br><br>
+                Name    : -
+                <br>
+                Role    : -
+                <br>
+                Email   : -
+                <br><br>
+                <a href="/client/login/<%=userId%>/addProfil">Add Profile</a>
+        <% } %>
 
-            <div>
-                <a href="/client/login/<%=userId%>/addProfil"><button>Add Profile</button></a>
-                <a href="/client/login/<%=userId%>/buyClothe"><button>Buy Clothes</button></a>
-                <a href="/"><button>Log Out</button></a>
-            </div><br>
-    <% } %>
+        <% if(result1[0].Profile !== null) { %>
+                Name    : <%=result1[0].Profile.genderName%>
+                <br>
+                Role    : <%=result1[0].role%>
+                <br>
+                Email   : <%=result1[0].email%>
+                <br>
+                <a href="/client/login/<%=userId%>/editProfil">Edit Profile</a>
+                <a href="/">Log Out</a>
+        <% } %>
+        <br><br>
+        <div style="float:right;">
+            <a href="/client/login/<%=userId%>/buyClothe"><button type="button" class="btn btn-outline-success">Buy Clothes</button></a>
+        </div>
+        <% if(clotheDel) { %>
+            <h4 style="color: red;">
+                Success delete <%=clotheDel%> from WishList
+            </h4>
+        <% } %>
+        
 
-    <% if(result1[0].Profile !== null) { %>
-            Name    : <%=result1[0].Profile.genderName%>
-            <br>
-            Role    : <%=result1[0].role%>
-            <br>
-            Email   : <%=result1[0].email%>
-            <br><br>
+        <% if(result2.length > 0) { %>
 
-        <div>
-            <a href="/client/login/<%=userId%>/editProfil"><button>Edit Profile</button></a>
-            <a href="/client/login/<%=userId%>/buyClothe"><button>Buy Clothes</button></a>
-            <a href="/"><button>Log Out</button></a>
-        </div><br>
-    <% } %>
-
-    <% if(clotheDel) { %>
-        <h3 style="color: red;">
-            Success delete <%=clotheDel%> from WishList
-        </h3>
-    <% } %>
-    
-
-    <% if(result2.length > 0) { %>
-
-    <table border="1">
-        <tr>
-            <th>Picture</th>
-            <th>Price</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Action</th>
-        </tr>
-        <% result2.forEach(x=>{ %>
+        <table class="table">
             <tr>
-                <th><img src="<%=x.Clothe.imageUrl%>"style="width: 200px; height:200px"</th>
-                <th><%=x.Clothe.changeFormat(x.Clothe.price)%></th>
-                <th><%=x.Clothe.name%></th>
-                <th><%=x.Clothe.type%></th>
-                <th>
-                    <a href="/client/login/<%=userId%>/deleteList/<%=x.id%>"><button>Delete from WishList</button></a>
-                </th>
+                <th>Picture</th>
+                <th>Price</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Action</th>
             </tr>
-        <% }) %>
-    </table>
+            <% result2.forEach(x=>{ %>
+                <tr>
+                    <th><img src="<%=x.Clothe.imageUrl%>"style="width: 200px; height:200px"</th>
+                    <th><%=x.Clothe.changeFormat(x.Clothe.price)%></th>
+                    <th><%=x.Clothe.name%></th>
+                    <th><%=x.Clothe.type%></th>
+                    <th>
+                        <a href="/client/login/<%=userId%>/deleteList/<%=x.id%>"><button type="button" class="btn btn-outline-danger">Delete from WishList</button></a>
+                    </th>
+                </tr>
+            <% }) %>
+        </table>
 
-    <% }  else  { %>
+        <% }  else  { %>
 
-        <h3>You dont have any shopList yet, click buy to add item</h3>
+            <h3>You dont have any shopList yet, click buy to add item</h3>
 
-    <%  }%>
+        <%  }%>
 
-    <h2>
-        Bill = <%=totalHarga%>
-    </h2>
-
-
-
+        <h2>
+            Bill = <%=totalHarga%>
+        </h2>
+    </div>
+    <script>
+        feather.replace()
+    </script>
     </body>
 </html>

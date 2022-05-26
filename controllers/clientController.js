@@ -28,7 +28,7 @@ class clientController {
                     res.redirect(`/client/login?error=${error}`)
                 }
             } else {
-                const error = `You don't have an account, please sign up`
+                const error = `You don't have an account, please`
                 res.redirect(`/client/login?error=${error}`)
             }
         })

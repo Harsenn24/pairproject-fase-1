@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All User</title>
+    <%- include('./partials/head-admin.ejs' ,{tittle: 'All User'}) %>
 </head>
 <body>
-    <h1>Clothes OKE</h1>
-
-    <a href="/admin/login/<%=userId%>"><button>Back to Home</button></a>
-    <br><br>
-
-    <table border="1">
-        <tr>
-            <td>Id</td>
-            <td>Username</td>
-            <td>Email</td>
-            <td>Role</td>
-        </tr>
-        <% result.forEach(x=>{ %>
-            <tr>
-                <td><%=x.id%></td>
-                <td><%=x.username%></td>
-                <td><%=x.email%></td>
-                <td><%=x.role%></td>
-            </tr>
-        <% }) %>
-    </table>
+    <div style="margin: 3%; position: relative;">
+        <a href="/admin/login/<%=userId%>" style="color: #354259; text-decoration: none;"><i data-feather="arrow-left-circle"></i> Back to Home</a>
+    </div>
+    <div class="container">
+        <h1>Clothes Oke</h1>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% result.forEach((x, i)=>{ %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%=x.username%></td>
+                        <td><%=x.email%></td>
+                        <td><%=x.role%></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>

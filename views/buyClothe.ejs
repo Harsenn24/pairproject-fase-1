@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Clothes</title>
+    <%- include('./partials/head.ejs' ,{tittle: 'Show Clothes'}) %>
 </head>
 <body>
-    <h1>Clothes OKE</h1>
+    <div style="margin: 3%; position: relative;">
+        <a href="/client/login/<%=userId%>" style="color: #354259; text-decoration: none;"><i data-feather="arrow-left-circle"></i> Back</a>
+    </div>
+    <div class="container" style="margin-top: 2%;">
+        <h1>Clothes Oke</h1>
 
-    <a href="/client/login/<%=userId%>"><button>Home</button></a>
-    <br><br>
+        <% if(ClotheName) { %>
+            <h4 style="color: green;">
+                Success buy <%=ClotheName%>
+            </h4>
+        <% } %>
 
-    <% if(ClotheName) { %>
-        <h2 style="color: green;">
-            Success buy <%=ClotheName%>
-        </h2>
-    <% } %>
-
-    <% if(failedBuy) { %>
-        <h2 style="color: red;">
-            You can't buy <%=failedBuy%>, its Out of stock!
-        </h2>
-    <% } %>
-
-    <table border="1">
-        <tr>
-            <th>Id</th>
-            <th>Picture</th>
-            <th>Price</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Total Stock</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        <% result.forEach(x=>{ %>
-            <tr>
-                <th><%=x.id%></th>
-                <th><img src="<%=x.imageUrl%>"style="width: 200px; height:200px"</th>
-                <th><%=x.changeFormat(x.price)%></th>
-                <th><%=x.name%></th>
-                <th><%=x.type%></th>
-                <th><%=x.stock%></th>
-                <th><%=x.statusSell(x.status)%></th>
-                <th>
-                    <a href="/client/login/<%=userId%>/addWishList/<%=x.id%>"><button>add To WishList</button></a>
-                </th>
-            </tr>
-        <% }) %>
-    </table>
+        <% if(failedBuy) { %>
+            <h4 style="color: red;">
+                You can't buy <%=failedBuy%>, its Out of stock!
+            </h4>
+        <% } %>
+        <div class="card-group">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <% result.forEach((x, i)=>{ %>
+                    <div class="card">
+                        <img src="<%=x.imageUrl%>" class="card-img-top" alt="picture cloth">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=x.changeFormat(x.price)%></h5>
+                            <h6><%=x.name%></h6>
+                            <p style="margin-top: -5%; font-size:small;">type: <%=x.type%></p>
+                            <p>stock: <%=x.stock%></p>
+                            <p><%=x.statusSell(x.status)%></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/client/login/<%=userId%>/addWishList/<%=x.id%>"><button class="btn btn-outline-success">add To WishList</button></a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>
